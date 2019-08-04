@@ -8,13 +8,15 @@ gradebook = "birwin_gradebook.db"
 gradebook = "clm_gradebook.db"
 
 assign_db = nbcon.root_dir / gradebook
+
+db_url=f'sqlite:///{str(nbcon.assign_db)}'
 exchange_dir = nbcon.root_dir / Path("exchange")
 
 print(f"assignment db is {assign_db}")
 
 c = get_config()  # noqa
 
-c.CourseDirectory.db_url = f"sqlite:///{assign_db}"
+c.CourseDirectory.db_url = db_url
 c.CourseDirectory.root = str(nbcon.root_dir)
 c.ExecutePreprocessor.timeout  = 300
 
