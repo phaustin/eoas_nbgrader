@@ -1,45 +1,28 @@
-import pprint
-
-import nbgrader
-import numpy as np
+"""
+read a csv file with student ids and create the gradebook.db
+"""
+from nbgrader.api import Gradebook
+import nbgrader_context as context
+import sqlalchemy as dbsql
 import pandas as pd
-from nbgrader.apps import NbGraderAPI
-from traitlets.config import Config
-from context import data_dir, exchange_dir
 
-# create a custom config object to specify options for nbgrader
-config = Config()
-config.Exchange.course_id = "course101"
-config.Exchange.root = str(exchange_dir)
+db_name=f'sqlite:///{str(context.assign_db)}'
+print(f'data base is {db_name}')
 
-api = NbGraderAPI(config=config)
+if context.assign_db.is_file():
+    context.assign_db.unlink()
+
+gb = Gradebook(db_name)
 
 
-df_gradebook = pd.read_csv(data_dir / 'fakestudentnames.csv')
+student_df = pd.read_csv(context.student_ids,index_col="ID")
 
-the_grades = nbgrader.api.Gradebook("sqlite:///grades.db")
+for the_id,first_name,last_name in student_df.to_records():
+    student_dict={'first_name':first_name,'last_name':last_name}
+    str_id = f"{the_id}"
+    gb.add_student(str_id,**student_dict)
 
-# # print(df_merged)
-
-# for row in df_merged.iterrows():
-#     the_dict = row[1].to_dict()
-#     values = row[1][["ID", "Surname", "Preferred Name", "SIS User ID"]].to_dict()
-#     new_dict = {}
-#     rename = [
-#         ("ID", "the_id"),
-#         ("Surname", "last_name"),
-#         ("Preferred Name", "first_name"),
-#     ]
-#     for old, new in rename:
-#         new_dict[new] = values[old]
-#     the_id = new_dict["the_id"]
-#     del new_dict["the_id"]
-#     the_grades.add_student(the_id, **new_dict)
-
-#     pprint.pprint(new_dict)
-
-# students = the_grades.students
-# print(students)
-# the_grades.close()
-
-# # pdb.set_trace()
+engine_in = dbsql.create_engine(db_name)
+with engine_in.begin() as connection:
+    df = pd.read_sql_table('student',connection)
+print(df.head())
