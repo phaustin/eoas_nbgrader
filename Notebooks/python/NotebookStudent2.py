@@ -1,29 +1,40 @@
 # ---
 # jupyter:
-#   celltoolbar: Create Assignment
 #   jupytext:
-#     cell_metadata_filter: all
 #     formats: ipynb,py:percent
-#     notebook_metadata_filter: all,-language_info
 #     text_representation:
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.2'
-#       jupytext_version: 1.2.1
+#       jupytext_version: 1.2.0
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
-# %% [markdown] {"trusted": true}
-# Question 1
-# %% [markdown] {"nbgrader": {"schema_version": 3, "solution": true, "grade": true, "locked": false, "task": false, "points": 1, "grade_id": "cell-14ade3731ed8c001"}, "trusted": true}
+
+# %% [markdown]
+# Excercise 1
 #
-# %% [markdown] {"trusted": true}
-# Question 2
-# %% [markdown] {"nbgrader": {"schema_version": 3, "solution": false, "grade": false, "locked": true, "task": true, "points": 1, "grade_id": "cell-4d5a82b731481fe7"}, "trusted": true}
-# Describe the task here!
-# %% [markdown] {"trusted": true}
-# Question 3
-# %% [markdown] {"nbgrader": {"schema_version": 3, "solution": true, "grade": false, "locked": false, "task": false, "grade_id": "cell-4ed5fccb4f0d2a5e"}, "trusted": true}
-#
+# a) Run the below code to see the plot.
+
+# %%
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Data for plotting
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2 * np.pi * t)
+
+fig, ax = plt.subplots()
+ax.plot(t, s)
+
+ax.set(xlabel='time (s)', ylabel='voltage (mV)',
+       title='About as simple as it gets, folks')
+ax.grid()
+
+# %% [markdown]
+# b) What is the maximum voltage at time 0.25?  Write your answer in the cell below.
+
+# %% {"nbgrader": {"schema_version": 3, "solution": true, "grade": true, "locked": false, "task": false, "points": 1, "grade_id": "cell-4d5a82b731481fe7"}}
