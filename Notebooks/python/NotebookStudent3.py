@@ -48,7 +48,7 @@ def graph(formula, x_range):
 # %% [markdown]
 # c) Now run the following statement: graph('X', range(-10, 11)) in the cell below replacing x with any formula that you like.  For example, replace x with 'x**3+2*x-3'.
 #
-# This statement calls the above script and insert a formula to be plotted.
+# This statement calls the above script and inserts a formula to be plotted.
 
 # %% {"nbgrader": {"schema_version": 3, "solution": false, "grade": false, "locked": true, "task": true, "points": 1, "grade_id": "cell-fe5be254a7580a61"}}
 
