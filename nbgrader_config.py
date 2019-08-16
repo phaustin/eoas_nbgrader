@@ -3,13 +3,11 @@ from pathlib import Path
 
 import nbgrader_context as nbcon
 
-gradebook = os.environ["e213_gradebook"]
-gradebook = "birwin_gradebook.db"
-gradebook = "clm_gradebook.db"
+gradebook = "gradebook.db"
 
 assign_db = nbcon.root_dir / gradebook
 
-db_url=f'sqlite:///{str(nbcon.assign_db)}'
+db_url = f"sqlite:///{str(nbcon.assign_db)}"
 exchange_dir = nbcon.root_dir / Path("exchange")
 
 print(f"assignment db is {assign_db}")
@@ -18,9 +16,10 @@ c = get_config()  # noqa
 
 c.CourseDirectory.db_url = db_url
 c.CourseDirectory.root = str(nbcon.root_dir)
-c.ExecutePreprocessor.timeout  = 300
+print(f"setting root to {c.CourseDirectory.root}")
+c.ExecutePreprocessor.timeout = 300
 
-c.Exchange.course_id = "e213"
+c.CourseDirectory.course_id = "EOSC001"
 c.Exchange.root = str(exchange_dir)
 print(f"in nbgrader_config.py: setting exchange to {c.Exchange.root}")
 
