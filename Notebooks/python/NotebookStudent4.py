@@ -1,26 +1,36 @@
 # ---
 # jupyter:
-#   celltoolbar: Create Assignment
 #   jupytext:
-#     cell_metadata_filter: all
 #     formats: ipynb,py:percent
-#     notebook_metadata_filter: all,-language_info
 #     text_representation:
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.2'
-#       jupytext_version: 1.2.1
+#       jupytext_version: 1.2.0
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
-# %% [markdown] {"trusted": true}
+
+# %% [markdown]
 # Question 1
+#
+# a) pyplot can produce polar graph.  The format to use the method is objectname.method(variable1, variable2).  Enter a statement in the cell below that will create a polar graph.  Please run the code with your statement to display the graph.
+#
+#
+
 # %% {"nbgrader": {"schema_version": 3, "solution": true, "grade": true, "locked": false, "task": false, "points": 1, "grade_id": "cell-a98f885f7f0fb08f"}}
-# %% [markdown] {"trusted": true}
-# Question 2
-# %% {"nbgrader": {"schema_version": 3, "solution": true, "grade": false, "locked": false, "task": false, "grade_id": "cell-03da36194ddd10b8"}}
-# %% [markdown] {"trusted": true}
-# Question 3
-# %% {"nbgrader": {"schema_version": 3, "solution": true, "grade": true, "locked": false, "task": false, "points": 1, "grade_id": "cell-c4527b4e04c9375e"}}
+import numpy as np
+import matplotlib.pyplot as plt
+cos = np.cos
+pi = np.pi
+
+a = 5
+e = 0.3
+theta = np.linspace(0,2*pi, 360)
+r = (a*(1-e**2))/(1+e*cos(theta))
+##enter your statement here##
+
+plt.show()
+
