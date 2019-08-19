@@ -27,7 +27,7 @@ for planet in planets:
     print (planet)
 
 # %% [markdown]
-# b) Write a statement in the cell below that will delete the element that does not belong in this list (hint: no a planet).
+# b) Write a statement in the cell below that will delete the element that does not belong in this list (hint: not a planet).
 
 # %% {"nbgrader": {"schema_version": 3, "solution": true, "grade": false, "locked": false, "task": false, "grade_id": "cell-00cc95148a616c15"}}
 ### BEGIN SOLUTION
