@@ -31,5 +31,5 @@ for planet in planets:
 
 # %% {"nbgrader": {"schema_version": 3, "solution": true, "grade": false, "locked": false, "task": false, "grade_id": "cell-00cc95148a616c15"}}
 ### BEGIN SOLUTION
-planets = np.delete(planets, 5)
+planets = np.delete(planets, 4)
 ### END SOLUTION
