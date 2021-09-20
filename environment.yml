@@ -21,5 +21,5 @@ dependencies:
   - numpy
   - pandas
   - nbgrader
-  - fuzzy_wuzzy
+  - fuzzywuzzy
 # conda-lock --file environment.yml -p linux-64

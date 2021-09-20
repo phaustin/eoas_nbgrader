@@ -15,15 +15,25 @@ print(f'data base is {db_name}')
 
 if context.gradebook_db.is_file():
     context.gradebook_db.unlink()
-
+    
 gb = Gradebook(db_name)
 
-student_df = pd.read_csv(context.student_csv,index_col="ID")
-print(student_df.head())
-for the_id,first_name,last_name in student_df.to_records():
-    student_dict={'first_name':first_name,'last_name':last_name}
-    str_id = f"{the_id}"
-    gb.add_student(str_id,**student_dict)
+idcol="SIS User ID"
+df_canvas = pd.read_csv(context.student_csv)
+df_canvas = pd.DataFrame(make_id(df_canvas,idcol),copy=True)
+possible_row_canvas = find_possible(df_canvas)
+idcol = "Student Number"
+df_fsc = pd.read_csv(context.fsc_csv)
+df_fsc = pd.DataFrame(make_id(df_fsc,idcol),copy=True)
+
+for the_id,row  in df_canvas.iterrows():
+    try:
+        canvas_id = f"{int(row['ID']):d}"
+        first_name, last_name = df_fsc.loc[the_id]['Preferred Name'], df_fsc.loc[the_id]['Surname']
+        student_dict={'first_name':first_name,'last_name':last_name}
+        gb.add_student(canvas_id,**student_dict)
+    except (KeyError,ValueError):
+        print(f"skipping row id {the_id}")
 
 engine_in = dbsql.create_engine(db_name)
 with engine_in.begin() as connection:

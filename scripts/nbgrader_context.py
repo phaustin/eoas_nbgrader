@@ -11,6 +11,7 @@ root_dir = curr_dir.parent
 print(f"{root_dir.resolve()=}")
 private_dir = root_dir / "e211_files"
 student_csv = list(private_dir.glob("*19T1135*csv"))[0]
+fsc_csv = list(private_dir.glob("classlists*2021W*211*csv"))[0]
 print(f"{str(student_csv)=}")
 exchange_dir = root_dir / 'exchange'
 

@@ -5,7 +5,18 @@ from pathlib import Path
 import numpy as np
 from fuzzywuzzy import fuzz
 import pdb
+import contextlib
+import os
 
+@contextlib.contextmanager
+def working_directory(path):
+    """Changes working directory and returns to previous on exit."""
+    prev_cwd = Path.cwd()
+    os.chdir(path)
+    try:
+        yield
+    finally:
+        os.chdir(prev_cwd)
 
 def make_upload(df_canvas):
     can_grade_cols = list(df_canvas.columns.to_list())
