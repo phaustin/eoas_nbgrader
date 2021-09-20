@@ -1,3 +1,6 @@
 .vscode
 .ipynb_checkpoints
 /.pre-commit-config.yaml
+e211_files
+__pycache__
+*egg-info*
